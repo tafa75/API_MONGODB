@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title= title 
+    link(rel="stylesheet", href="/style.css")
+  body
+    nav(id= "navegacion")
+            a(href="/") INICIO
+            br
+            a(href="/formulario") GUARDA TUS PELÍCULAS FAVORITAS
+    header(id= "cabecera")
+      h1(class="Home")=message
+    div(id = "buscador") 
+      h2 BUSCADOR DE PELÍCULAS
+            br
+            input(type="text", name="Titulos" id="Titulos")
+            br
+            input(type="button", value="Buscar" id="Buscar")
+    div(id = "informacion")
+      h2(class="info")
+      each film, index in pelis
+        section(class="lista")
+          article(class="cartas")
+            header(class="cabecera")
+            span(id="posicion")=index
+            p(class="Name") Titulo: 
+              span=film.Titulo
+            p(class="Year") Año de la película: 
+              span=film.Epoca
+            p(class="Genre") Género de la película: 
+              span=film.Genre
+            p(class="Director") Director: 
+              span=film.Director
+            img(class="Poster" id="poster" src=film.Poster)
+            br
+            input(type="button" id=`borrar${index}` value="Borrar" onclick=`borrar("${film.Titulo}")`)
+            input(type="button" id=`editar${index}` value="Editar", onclick=`editar("${film.Titulo}")`)
+            input(type="button"  id=`detalle${index}` value="Detalles", onclick =`detalle("${film.Titulo}")`)
+  footer
+  script(src="/script.js") 
